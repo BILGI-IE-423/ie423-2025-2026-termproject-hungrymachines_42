@@ -6,5 +6,3 @@ Bersu Yılmaz - 123203069
 Emirhan Karaca - 122203009
 
 Mert Ada Demirbaş - 123203026
-
-KÖFTECİ YUSUF
