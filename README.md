@@ -1,5 +1,4 @@
 # IE 423 2025-2026 Term Project Proposal
-ie423-2025-2026-termproject-hungrymachines_42 created by GitHub Classroom
 
 # Team Members
 
