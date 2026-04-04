@@ -21,7 +21,7 @@ Source: https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movi
 
 
 # Installation
-pip install -r requirements.txt
+
 
 # Running the Codes
 
