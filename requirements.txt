@@ -1,1 +1,5 @@
-
+pandas
+spacy
+beautifulsoup4
+contractions
+tqdm
