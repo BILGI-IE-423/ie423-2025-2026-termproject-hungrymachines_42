@@ -24,10 +24,6 @@ Source: https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movi
 pip install -r requirements.txt
 
 # Running the Codes
-python scripts/01_load_data.py
 
-python scripts/02_preprocess_data.py
-
-python scripts/03_basic_eda.py
 
 # Proposal Document
