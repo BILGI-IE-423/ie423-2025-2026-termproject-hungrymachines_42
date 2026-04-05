@@ -65,3 +65,33 @@ Potential challenges include high-dimensional text data, bias related to review 
 ## Initial Outputs
 
 ## Reproducibility Instructions
+
+### 1. Clone the repository
+```text
+git clone [https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42]
+cd [ie423-2025-2026-termproject-hungrymachines_42]
+```
+
+### 2. Install required packages
+```text
+pip install -r requirements.txt
+```
+
+### 3. Place the dataset
+```text
+Download the dataset from:
+
+https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+Put the dataset file inside:
+```text
+data/raw/
+```
+
+
+### 4. Run the scripts
+```text
+python scripts/01_load_data.py
+python scripts/02_preprocess_data.py
+python scripts/03_basic_eda.py
+```
