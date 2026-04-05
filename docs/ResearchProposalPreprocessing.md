@@ -1,14 +1,14 @@
-# IE 423 Term Project Proposal
+# IE 423 Term Project Proposal - Sentiment Analysis of IMDB Movie Reviews Using NLP and Machine Learning
 
 ## Team Information
 
-* Bersu Yılmaz - 123203069
+- Bersu Yılmaz - 123203069
 
-* Emirhan Karaca - 122203009
+- Emirhan Karaca - 122203009
 
-* Mert Ada Demirbaş - 123203026
+- Mert Ada Demirbaş - 123203026
+
   
-
 ## Dataset Description
 
 We use the IMDB Dataset of 50K Movie Reviews, obtained from [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews).
