@@ -67,9 +67,9 @@ Potential challenges include high-dimensional text data, bias related to review 
 ## Reproducibility Instructions
 
 ### 1. Clone the repository
-```text
-git clone [https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42]
-cd [ie423-2025-2026-termproject-hungrymachines_42]
+```bash
+git clone https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42
+cd ie423-2025-2026-termproject-hungrymachines_42
 ```
 
 ### 2. Install required packages
