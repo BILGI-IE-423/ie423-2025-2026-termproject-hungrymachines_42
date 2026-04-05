@@ -41,3 +41,14 @@ Are misclassified reviews concentrated in specific structural or behavioral patt
 
 **Explanation:**
 Systematic error analysis is essential in the machine learning lifecycle, as it helps identify model weaknesses beyond overall accuracy. By examining misclassified reviews, this study explores how traditional models handle complex text structures, including rare words and emotionally mixed content. The IMDB dataset provides a suitable setting due to its diverse vocabulary and varying review lengths, allowing clear identification of False Positives and False Negatives. Analyzing these errors will help reveal patterns that negatively affect model performance and guide future improvements.
+
+## Project Proposal
+The primary objective of this project is to evaluate the effectiveness of traditional machine learning methods in sentiment analysis, with a focus on detecting extreme opinions and understanding factors that influence model performance.
+
+The study will begin with data preprocessing, including text cleaning, normalization, and transformation into numerical representations such as Bag-of-Words and TF-IDF. This will be followed by exploratory data analysis to examine sentiment distribution, review length patterns, and potential relationships between textual features and sentiment polarity.
+
+In line with the research questions, models such as Logistic Regression, Naive Bayes, and Support Vector Machines which may be implemented. Additionally, statistical analyses will be conducted to evaluate the relationship between review length and sentiment, alongside error analysis to identify patterns in misclassified reviews.
+
+The project aims not only to achieve reliable classification performance but also to generate interpretable insights, particularly regarding the usability of simpler models for detecting extreme sentiments in practical applications.
+
+Potential challenges include high-dimensional text data, bias related to review length, and difficulties in handling ambiguous or mixed sentiments.
