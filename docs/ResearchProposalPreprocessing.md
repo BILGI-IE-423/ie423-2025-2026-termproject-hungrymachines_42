@@ -21,9 +21,7 @@ The IMDB dataset provides a suitable basis for this analysis, enabling us to eva
 
 
 ## Dataset Access and Loaction
-The dataset is stored in:
-
-data/raw/IMDB Dataset.csv
+The dataset is stored in: data/raw/IMDB Dataset.csv
 
 If the dataset needs to be downloaded manually, it is available at:
 
