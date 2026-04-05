@@ -20,7 +20,7 @@ Analyzing the relationship between document length and sentiment is an important
 The IMDB dataset provides a suitable basis for this analysis, enabling us to evaluate whether review length should be used as a feature to improve model performance or normalized to reduce potential bias.
 
 
-## Dataset Access and Loaction
+## Dataset Access and Location
 The dataset is stored in: data/raw/IMDB Dataset.csv
 
 If the dataset needs to be downloaded manually, it is available at:
