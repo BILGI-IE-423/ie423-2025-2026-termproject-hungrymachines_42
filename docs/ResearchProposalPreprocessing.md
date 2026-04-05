@@ -62,6 +62,15 @@ The project aims not only to achieve reliable classification performance but als
 
 Potential challenges include high-dimensional text data, bias related to review length, and difficulties in handling ambiguous or mixed sentiments.
 
+## Preprocessing Steps 
+
+### Step 1 - Loading the Data 
+The initial data pipeline was executed using scripts/01_load_data.py. We ingested the raw IMDB dataset via pandas to establish our baseline dataframe, which comprised exactly 50,000 observations with two primary columns (review and sentiment), preparing it for subsequent structural analysis.
+
+### Step 2 - Initial Inspection
+Conducted within the same ingestion script (scripts/01_load_data.py), we performed a fundamental structural assessment. During this phase, we verified the total absence of missing values, flagged existing duplicate entries, and confirmed a perfectly balanced class distribution (50% positive and 50% negative reviews). This step was necessary to validate data integrity before any complex manipulation.
+
+
 ## Initial Outputs
 
 ## Reproducibility Instructions
