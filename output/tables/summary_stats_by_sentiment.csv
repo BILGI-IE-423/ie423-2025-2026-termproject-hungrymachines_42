@@ -1,0 +1,5 @@
+,word_count,avg_word_length,exclamation_count,all_caps_count,lexical_diversity
+Negative — Mean,227.239,4.277,1.027,1.883,0.647
+Negative — Median,173.0,4.27,0.0,1.0,0.648
+Positive — Mean,230.861,4.335,0.93,1.562,0.642
+Positive — Median,171.0,4.33,0.0,0.0,0.642
