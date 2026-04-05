@@ -78,7 +78,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Place the dataset
-```text
+
 Download the dataset from:
 
 https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
