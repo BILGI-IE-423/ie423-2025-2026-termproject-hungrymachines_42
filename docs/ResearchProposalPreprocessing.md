@@ -73,15 +73,16 @@ We performed a basic structural analysis using the same data-loading script (scr
 ### Step 3 - Cleaning 
 Utilizing scripts/02_preprocess_data.py, we executed a strict normalization and feature engineering sequence to finalize the dataset:
 
-* Deduplication & Encoding: Exact duplicate rows were dropped to prevent data leakage, and target labels were converted to a machine-readable binary format (positive -> 1, negative -> 0).
+- **Deduplication & Encoding:** Exact duplicate rows were dropped to prevent data leakage, and target labels were converted to a machine-readable binary format (positive -> 1, negative -> 0).
 
-* Pre-cleaning Feature Extraction: We extracted raw emotional indicators (exclamation_count and all_caps_count) directly from the untouched strings. Extracting them beforehand preserved critical typographic signals that standard NLP cleaning would otherwise destroy.
+- **Pre-cleaning Feature Extraction:** We extracted raw emotional indicators (exclamation_count and all_caps_count) directly from the untouched strings. Extracting them beforehand preserved critical typographic signals that standard NLP cleaning would otherwise destroy.
 
-* Text Normalization & Negation Handling: We stripped HTML/punctuation noise and lowercased the text. To prevent our future models from misinterpreting inverted sentiments, we implemented a custom 3-word negation window, prefixing words following negation triggers with a NEG_ tag. We then removed standard stop-words and applied WordNet Lemmatization to produce the cleaned_review column.
+- **Text Normalization & Negation Handling:** We stripped HTML/punctuation noise and lowercased the text. To prevent our future models from misinterpreting inverted sentiments, we implemented a custom 3-word negation window, prefixing words following negation triggers with a NEG_ tag. We then removed standard stop-words and applied WordNet Lemmatization to produce the cleaned_review column.
 
-* Post-cleaning Metrics & Integrity: Finally, we calculated word_count, avg_word_length, and lexical_diversity from the cleaned text to capture true semantic length. Any rows that became completely empty due to the cleaning process were systematically dropped.
+- **Post-cleaning Metrics & Integrity:** Finally, we calculated word_count, avg_word_length, and lexical_diversity from the cleaned text to capture true semantic length. Any rows that became completely empty due to the cleaning process were systematically dropped.
 
-
+### Step 4 - Saving Processed Data 
+The fully engineered dataframe was exported as data/processed/cleaned_data_set.csv. This final dataset consists of 8 columns: the original text, the cleaned text, the binary label, and our five custom statistical features. This output serves as the definitive, static dataset ready for Exploratory Data Analysis and Model Training.
 
 
 ## Initial Outputs
