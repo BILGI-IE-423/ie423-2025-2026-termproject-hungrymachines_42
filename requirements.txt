@@ -1,5 +1,6 @@
 pandas
-spacy
-beautifulsoup4
-contractions
-tqdm
+numpy
+matplotlib
+seaborn
+scipy
+nltk
