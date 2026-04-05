@@ -95,3 +95,33 @@ python scripts/01_load_data.py
 python scripts/02_preprocess_data.py
 python scripts/03_basic_eda.py
 ```
+
+```
+## Transparency and Traceability
+
+All outputs presented in this repository are generated directly from the Python scripts located in the `scripts/` folder. No results were manually created or modified outside of these scripts.
+
+The pipeline is designed to be fully reproducible — any user can clone the repository, install the required packages, and re-generate all outputs by running the three scripts in order.
+
+### Script Responsibilities
+
+| Script | Responsibility |
+|---|---|
+| `01_load_data.py` | Loads the raw IMDB dataset, removes duplicates, and performs initial validation |
+| `02_preprocess_data.py` | Applies text cleaning, negation tagging (NEG_), lemmatization, feature engineering, and sentiment encoding |
+| `03_basic_eda.py` | Generates all summary statistics and visualizations from the cleaned dataset |
+
+### Output Structure
+
+| Output Type | Content |
+|---|---|
+| `cleaned_data_set.csv` | Fully preprocessed dataset with engineered features, used as input for EDA and modeling |
+| `summary_stats_by_sentiment.csv` | Mean and median statistics grouped by sentiment label |
+| `descriptive_stats.csv` | Descriptive statistics for all behavioral features |
+| `*.png` (6 figures) | All visualizations produced by `03_basic_eda.py` |
+
+### Reproducibility Note
+
+All random operations (e.g., scatter plot sampling) use a fixed seed (`random_state=42`) to ensure consistent outputs across runs. The preprocessing pipeline preserves negation context through a custom NEG_ tagging system, which is documented in `02_preprocess_data.py`.
+
+
