@@ -1,4 +1,4 @@
-# IE 423 2025-2026 Term Project Proposal
+# IE 423 2025-2026 Term Project Proposal - Sentiment Analysis of IMDB Movie Reviews Using NLP and Machine Learning
 
 # Team Members
 
