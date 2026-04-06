@@ -166,7 +166,7 @@ python scripts/02_preprocess_data.py
 python scripts/03_basic_eda.py
 ```
 
-```
+
 ## Transparency and Traceability
 
 All outputs presented in this repository are generated directly from the Python scripts located in the `scripts/` folder. No results were manually created or modified outside of these scripts.
