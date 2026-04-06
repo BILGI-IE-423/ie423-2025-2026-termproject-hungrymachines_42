@@ -79,7 +79,7 @@ Utilizing `scripts/02_preprocess_data.py`, we executed a strict normalization an
 
 - **Text Normalization & Negation Handling:** We stripped HTML/punctuation noise and lowercased the text. To prevent our future models from misinterpreting inverted sentiments, we implemented a custom 3-word negation window, prefixing words following negation triggers with a `NEG_` tag. We then removed standard stop-words and applied WordNet Lemmatization to produce the `cleaned_review` column.
 
-- **Post-cleaning Metrics & Integrity:** Finally, we calculated `word_count`, `avg_word_length`, and `lexical_diversity` from the cleaned text to capture true semantic length. Any rows that became completely empty due to the cleaning process were systematically dropped.
+- **Post-cleaning Metrics & Integrity:** Finally, we calculated `word_count`, `avg_word_length`, and `lexical_diversity` from the raw text to capture true semantic length. Any rows that became completely empty due to the cleaning process were systematically dropped.
 
 ### Step 4 - Saving Processed Data 
 The fully engineered dataframe was exported as `data/processed/cleaned_data_set.csv`. This final dataset consists of 8 columns: the original text, the cleaned text, the binary label, and our five custom statistical features. This output serves as the definitive, static dataset ready for Exploratory Data Analysis and Model Training.
