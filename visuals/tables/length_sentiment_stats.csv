@@ -1,0 +1,5 @@
+test,statistic,p_value,interpretation
+Pearson correlation,0.010666,1.755e-02,Linear correlation between word_count and sentiment
+Spearman correlation,-0.00884,4.902e-02,Monotonic (rank-based) correlation
+Point-biserial correlation,0.010666,1.755e-02,Correlation between binary sentiment and continuous word_count
+Mann-Whitney U (two-sided),304155725.0,4.902e-02,Whether the word_count distributions differ between Pos and Neg
