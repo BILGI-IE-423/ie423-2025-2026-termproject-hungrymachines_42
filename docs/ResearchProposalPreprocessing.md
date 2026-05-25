@@ -1,138 +1,126 @@
-# IE 423 Term Project Proposal - Sentiment Analysis of IMDB Movie Reviews Using NLP and Machine Learning
+# IE 423 Term Project Proposal — Sentiment Analysis of IMDB Movie Reviews Using NLP and Machine Learning
 
 ## Team Information
 
-- Bersu Yılmaz - 123203069
+- Bersu Yılmaz — 123203069
+- Emirhan Karaca — 122203009
+- Mert Ada Demirbaş — 123203026
 
-- Emirhan Karaca - 122203009
-
-- Mert Ada Demirbaş - 123203026
-
-  
 ## Dataset Description
 
-We use the IMDB Dataset of 50K Movie Reviews, obtained from [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews).
+We use the **IMDB Dataset of 50K Movie Reviews**, obtained from [Kaggle](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews). The dataset contains 50,000 movie reviews labeled for binary sentiment classification (positive and negative), providing a balanced corpus for text analysis and machine learning experiments.
 
-This dataset contains 50,000 movie reviews labeled for binary sentiment classification (positive and negative), providing a balanced dataset for text analysis and machine learning applications.
-
-Analyzing the relationship between document length and sentiment is an important step in exploratory data analysis and feature engineering. This study examines whether word count has predictive value and whether variations in review length introduce bias in classification models, potentially associating longer texts with negative sentiment.
-
-The IMDB dataset provides a suitable basis for this analysis, enabling us to evaluate whether review length should be used as a feature to improve model performance or normalized to reduce potential bias.
-
+Analyzing the relationship between document length and sentiment is an important step in exploratory data analysis and feature engineering. This study examines whether word count has predictive value, and whether variations in review length introduce bias in classification models — for example, by associating longer texts with negative sentiment. The IMDB dataset is a suitable base for this analysis because it lets us evaluate whether review length should be used as a feature to improve model performance or normalized to reduce potential bias.
 
 ## Dataset Access and Location
-The dataset is stored in: `data/raw/IMDB Dataset.csv`
 
-If the dataset needs to be downloaded manually, it is available at:
+The raw dataset is expected at:
+
+```
+data/raw/IMDB Dataset.csv
+```
+
+If the file is missing, download it from Kaggle:
 
 https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
 
-After downloading, place the file inside:
-
-`data/raw/`
+and place it inside `data/raw/`. Full instructions are in [`data/README.md`](../data/README.md).
 
 ## Research Questions
 
-### Research Question 1 
-Can traditional machine learning algorithms reliably categorize extreme sentiments to automate initial quality control in customer feedback loops?
+### Research Question 1
+**Can traditional machine learning algorithms reliably categorize extreme sentiments to automate initial quality control in customer feedback loops?**
 
-**Explanation:** 
+**Explanation:**
 In large-scale customer feedback systems, quickly identifying strongly positive or negative opinions is crucial for effective decision-making and prioritization. This study examines whether traditional machine learning models can serve as practical tools for automating early-stage quality control by focusing on extreme sentiment detection. The key objective is to evaluate whether simpler and more interpretable models are sufficient for identifying highly polarized feedback in real-world scenarios. The IMDB 50K dataset provides a suitable test environment, as it includes diverse reviews with varying emotional intensity, enabling a realistic assessment of model performance.
 
 ### Research Question 2
-Is there a statistically significant correlation between the review length (word count) and the sentiment polarity, indicating whether dissatisfied viewers write more exhaustive reviews?
+**Is there a statistically significant correlation between review length (word count) and sentiment polarity, indicating whether dissatisfied viewers write more exhaustive reviews?**
 
 **Explanation:**
-Analyzing the relationship between document length and class labels is a fundamental step in exploratory data analysis (EDA) and feature engineering. This inquiry investigates whether simple structural metadata (word count) holds predictive power for the target variable (sentiment), and whether varying text lengths introduce a distribution bias that could cause classification models to essentially associate verbosity with the negative class. The IMDB dataset is ideal for evaluating this dynamic; its 50,000 labeled reviews provide the necessary volume to test if document length should be utilized as an engineered feature to improve model accuracy, or if length normalization is required to prevent algorithmic bias.
+Analyzing the relationship between document length and class labels is a fundamental step in exploratory data analysis and feature engineering. This question investigates whether simple structural metadata (word count) holds predictive power for the target variable (sentiment), and whether varying text lengths introduce a distribution bias that could cause classification models to essentially associate verbosity with the negative class. The IMDB dataset is ideal for evaluating this dynamic; its 50,000 labeled reviews provide the necessary volume to test if document length should be utilized as an engineered feature to improve model accuracy, or if length normalization is required to prevent algorithmic bias.
 
 ### Research Question 3
-Are misclassified reviews concentrated in specific structural or behavioral patterns, such as review length, use of rare words, or emotionally mixed content?
+**Are misclassified reviews concentrated in specific structural or behavioral patterns, such as review length, use of rare words, or emotionally mixed content?**
 
 **Explanation:**
 Systematic error analysis is essential in the machine learning lifecycle, as it helps identify model weaknesses beyond overall accuracy. By examining misclassified reviews, this study explores how traditional models handle complex text structures, including rare words and emotionally mixed content. The IMDB dataset provides a suitable setting due to its diverse vocabulary and varying review lengths, allowing clear identification of False Positives and False Negatives. Analyzing these errors will help reveal patterns that negatively affect model performance and guide future improvements.
 
 ## Project Proposal
+
 The primary objective of this project is to evaluate the effectiveness of traditional machine learning methods in sentiment analysis, with a focus on detecting extreme opinions and understanding factors that influence model performance.
 
-The study will begin with data preprocessing, including text cleaning, normalization, and transformation into numerical representations such as Bag-of-Words and TF-IDF. This will be followed by exploratory data analysis to examine sentiment distribution, review length patterns, and potential relationships between textual features and sentiment polarity.
+The study begins with data preprocessing — text cleaning, normalization, and transformation into numerical representations such as Bag-of-Words and TF-IDF. This is followed by exploratory data analysis to examine sentiment distribution, review length patterns, and potential relationships between textual features and sentiment polarity.
 
-In line with the research questions, models such as Logistic Regression, Naive Bayes, and Support Vector Machines which may be implemented. Additionally, statistical analyses will be conducted to evaluate the relationship between review length and sentiment, alongside error analysis to identify patterns in misclassified reviews.
+In line with the research questions, models such as Logistic Regression, Naive Bayes, and Support Vector Machines may be implemented. Statistical analyses will evaluate the relationship between review length and sentiment, alongside error analysis to identify patterns in misclassified reviews.
 
-The project aims not only to achieve reliable classification performance but also to generate interpretable insights, particularly regarding the usability of simpler models for detecting extreme sentiments in practical applications.
+The project aims not only to achieve reliable classification performance but also to generate interpretable insights, particularly regarding the usability of simpler models for detecting extreme sentiments in practical applications. Potential challenges include high-dimensional text data, bias related to review length, and difficulties in handling ambiguous or mixed sentiments.
 
-Potential challenges include high-dimensional text data, bias related to review length, and difficulties in handling ambiguous or mixed sentiments.
+## Preprocessing Steps
 
-## Preprocessing Steps 
+### Step 1 — Loading the Data
+The initial data pipeline is executed by `scripts/01_load_data.py`. It ingests the raw IMDB dataset via pandas to establish the baseline dataframe, which contains 50,000 observations with two primary columns (`review` and `sentiment`).
 
-### Step 1 - Loading the Data 
-The initial data pipeline was executed using `scripts/01_load_data.py` . We ingested the raw IMDB dataset via pandas to establish our baseline dataframe, which comprised exactly 50,000 observations with two primary columns (`review` and `sentiment`), preparing it for subsequent structural analysis.
+### Step 2 — Initial Inspection
+The same script verifies dataset integrity: there are no missing values, exact duplicate rows are flagged for downstream removal, and the class distribution is confirmed to be perfectly balanced (50% positive, 50% negative).
 
-### Step 2 - Initial Inspection
-We performed a basic structural analysis using the same data-loading script (`scripts/01_load_data.py`). During this phase, we verified the total absence of missing values, flagged existing duplicate entries, and confirmed a perfectly balanced class distribution (50% positive and 50% negative reviews). This step was necessary to validate data integrity before any complex manipulation.
+### Step 3 — Cleaning
+`scripts/02_preprocess_data.py` performs the full normalization and feature engineering sequence:
 
-### Step 3 - Cleaning 
-Utilizing `scripts/02_preprocess_data.py`, we executed a strict normalization and feature engineering sequence to finalize the dataset:
+- **Deduplication & label encoding.** Exact duplicate rows are dropped to prevent data leakage; sentiment labels are mapped to a binary format (`positive` → 1, `negative` → 0).
+- **Pre-cleaning feature extraction.** Raw emotional indicators (`exclamation_count`, `all_caps_count`) are computed directly from the untouched strings, before lowercasing and punctuation removal could erase those signals.
+- **Text normalization & negation handling.** HTML tags and punctuation are stripped, text is lowercased, and a custom 3-word negation window prefixes tokens following negation triggers with `NEG_`. Standard stop-words are removed (excluding negation-relevant words), and WordNet lemmatization produces the final `cleaned_review` column.
+- **Post-cleaning metrics & integrity.** `word_count`, `avg_word_length`, and `lexical_diversity` are computed on the raw text to capture true semantic length. Rows that become empty after cleaning are dropped.
 
-- **Deduplication & Encoding:** Exact duplicate rows were dropped to prevent data leakage, and target labels were converted to a machine-readable binary format (`positive` -> 1, `negative` -> 0).
-
-- **Pre-cleaning Feature Extraction:** We extracted raw emotional indicators (`exclamation_count` and `all_caps_count`) directly from the untouched strings. Extracting them beforehand preserved critical typographic signals that standard NLP cleaning would otherwise destroy.
-
-- **Text Normalization & Negation Handling:** We stripped HTML/punctuation noise and lowercased the text. To prevent our future models from misinterpreting inverted sentiments, we implemented a custom 3-word negation window, prefixing words following negation triggers with a `NEG_` tag. We then removed standard stop-words and applied WordNet Lemmatization to produce the `cleaned_review` column.
-
-- **Post-cleaning Metrics & Integrity:** Finally, we calculated `word_count`, `avg_word_length`, and `lexical_diversity` from the raw text to capture true semantic length. Any rows that became completely empty due to the cleaning process were systematically dropped.
-
-### Step 4 - Saving Processed Data 
-The fully engineered dataframe was exported as `data/processed/cleaned_data_set.csv`. This final dataset consists of 8 columns: the original text, the cleaned text, the binary label, and our five custom statistical features. This output serves as the definitive, static dataset ready for Exploratory Data Analysis and Model Training.
-
+### Step 4 — Saving Processed Data
+The engineered dataframe is exported to `data/processed/cleaned_data_set.csv` with 8 columns: the original review, the cleaned review, the binary label, and the five custom statistical features. This file is the static input for EDA and modeling.
 
 ## Initial Outputs
 
 ### Dataset Shape
-After loading and removing duplicate rows, the dataset contains **49,582 reviews** and **8 columns**
-(`review`, `cleaned_review`, `sentiment`, `word_count`, `avg_word_length`, `lexical_diversity`, `exclamation_count`, `all_caps_count`).
+After loading and removing duplicates, the dataset contains **49,582 reviews** and **8 columns** (`review`, `cleaned_review`, `sentiment`, `word_count`, `avg_word_length`, `lexical_diversity`, `exclamation_count`, `all_caps_count`).
 
 ### Missing Value Summary
-No missing values were detected in any column after preprocessing.  
-All 49,582 rows are complete and ready for analysis.
+No missing values are detected in any column after preprocessing. All 49,582 rows are complete and ready for analysis.
 
 ### Descriptive Statistics
-The table below was generated by `scripts/03_basic_eda.py` and saved as `descriptive_stats.csv`.
+Generated by `scripts/03_basic_eda.py` and saved to `outputs/tables/descriptive_stats.csv`.
 
-| | word_count | avg_word_length | exclamation_count | all_caps_count | lexical_diversity |
-|---|---|---|---|---|---|
+|       | word_count | avg_word_length | exclamation_count | all_caps_count | lexical_diversity |
+|-------|-----------:|----------------:|------------------:|---------------:|------------------:|
 | count | 49,582 | 49,582 | 49,582 | 49,582 | 49,582 |
-| mean | 229.06 | 4.31 | 0.98 | 1.72 | 0.645 |
-| std | 169.79 | 0.30 | 2.92 | 4.11 | 0.094 |
-| min | 4 | 3.04 | 0 | 0 | 0.042 |
-| 25% | 125 | 4.10 | 0 | 0 | 0.583 |
-| 50% | 172 | 4.29 | 0 | 1 | 0.645 |
-| 75% | 278 | 4.49 | 1 | 2 | 0.704 |
-| max | 2,459 | 12.24 | 282 | 154 | 1.000 |
+| mean  | 229.06 | 4.31 | 0.98 | 1.72 | 0.645 |
+| std   | 169.79 | 0.30 | 2.92 | 4.11 | 0.094 |
+| min   | 4 | 3.04 | 0 | 0 | 0.042 |
+| 25%   | 125 | 4.10 | 0 | 0 | 0.583 |
+| 50%   | 172 | 4.29 | 0 | 1 | 0.645 |
+| 75%   | 278 | 4.49 | 1 | 2 | 0.704 |
+| max   | 2,459 | 12.24 | 282 | 154 | 1.000 |
 
 ### Summary Statistics by Sentiment
-The table below was generated by `scripts/03_basic_eda.py` and saved as `summary_stats_by_sentiment.csv`.
+Generated by `scripts/03_basic_eda.py` and saved to `outputs/tables/summary_stats_by_sentiment.csv`.
 
-| | word_count | avg_word_length | exclamation_count | all_caps_count | lexical_diversity |
-|---|---|---|---|---|---|
-| Negative — Mean | 227.24 | 4.28 | 1.03 | 1.88 | 0.647 |
-| Negative — Median | 173.00 | 4.27 | 0.00 | 1.00 | 0.648 |
-| Positive — Mean | 230.86 | 4.34 | 0.93 | 1.56 | 0.642 |
-| Positive — Median | 171.00 | 4.33 | 0.00 | 0.00 | 0.642 |
+|                       | word_count | avg_word_length | exclamation_count | all_caps_count | lexical_diversity |
+|-----------------------|-----------:|----------------:|------------------:|---------------:|------------------:|
+| Negative — Mean       | 227.24 | 4.28 | 1.03 | 1.88 | 0.647 |
+| Negative — Median     | 173.00 | 4.27 | 0.00 | 1.00 | 0.648 |
+| Positive — Mean       | 230.86 | 4.34 | 0.93 | 1.56 | 0.642 |
+| Positive — Median     | 171.00 | 4.33 | 0.00 | 0.00 | 0.642 |
 
 ### Example Visualizations
-The figures below were generated by `scripts/03_basic_eda.py`.
+All figures below are generated by `scripts/03_basic_eda.py` and saved under `outputs/figures/`.
 
-![Sentiment Distribution](../output/figures/sentiment_distribution.png)
+![Sentiment Distribution](../outputs/figures/sentiment_distribution.png)
 
-![Word Count Distribution](../output/figures/word_count_distribution.png)
+![Word Count Distribution](../outputs/figures/word_count_distribution.png)
 
-![Top 15 Most Frequent Words](../output/figures/top_words_by_sentiment.png)
+![Top 15 Most Frequent Words](../outputs/figures/top_words_by_sentiment.png)
 
-![Correlation Matrix](../output/figures/correlation_matrix.png)
+![Correlation Matrix](../outputs/figures/correlation_matrix.png)
 
-![Lexical Diversity vs Word Count](../output/figures/lexical_diversity_vs_wordcount.png)
+![Lexical Diversity vs Word Count](../outputs/figures/lexical_diversity_vs_wordcount.png)
 
-![Lexical Diversity Segments](../output/figures/lexical_diversity_segments.png)
+![Lexical Diversity Segments](../outputs/figures/lexical_diversity_segments.png)
 
 ## Reproducibility Instructions
 
@@ -143,55 +131,50 @@ cd ie423-2025-2026-termproject-hungrymachines_42
 ```
 
 ### 2. Install required packages
-```text
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Place the dataset
-
-Download the dataset from:
+### 3. Place the raw dataset
+Download `IMDB Dataset.csv` from Kaggle:
 
 https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
 
-Put the dataset file inside:
-```text
-data/raw/
+and place it at exactly:
+
+```
+data/raw/IMDB Dataset.csv
 ```
 
-
-### 4. Run the scripts
-```text
+### 4. Run the scripts (from the repository root)
+```bash
 python scripts/01_load_data.py
 python scripts/02_preprocess_data.py
 python scripts/03_basic_eda.py
 ```
 
+After step 4, the cleaned dataset will be at `data/processed/cleaned_data_set.csv`, all figures will be in `outputs/figures/`, and all tables will be in `outputs/tables/`.
 
 ## Transparency and Traceability
 
-All outputs presented in this repository are generated directly from the Python scripts located in the `scripts/` folder. No results were manually created or modified outside of these scripts.
-
-The pipeline is designed to be fully reproducible — any user can clone the repository, install the required packages, and re-generate all outputs by running the three scripts in order.
+All outputs presented in this document are generated directly from the Python scripts in `scripts/`. No result is produced or modified outside of those scripts. The pipeline is designed so that anyone can clone the repository, install the required packages, place the raw CSV, and regenerate every output by running the three scripts in order.
 
 ### Script Responsibilities
 
 | Script | Responsibility |
 |---|---|
-| `01_load_data.py` | Loads the raw IMDB dataset, removes duplicates, and performs initial validation |
-| `02_preprocess_data.py` | Applies text cleaning, negation tagging (NEG_), lemmatization, feature engineering, and sentiment encoding |
-| `03_basic_eda.py` | Generates all summary statistics and visualizations from the cleaned dataset |
+| `01_load_data.py` | Loads the raw IMDB dataset, validates the file path, and prints basic structural info |
+| `02_preprocess_data.py` | Removes duplicates, applies text cleaning with negation tagging (`NEG_`) and lemmatization, computes statistical features, encodes sentiment, and saves the processed dataset |
+| `03_basic_eda.py` | Generates all summary statistics tables and visualizations from the cleaned dataset |
 
-### Output Structure
+### Output Locations
 
-| Output Type | Content |
+| Output | Path |
 |---|---|
-| `cleaned_data_set.csv` | Fully preprocessed dataset with engineered features, used as input for EDA and modeling |
-| `summary_stats_by_sentiment.csv` | Mean and median statistics grouped by sentiment label |
-| `descriptive_stats.csv` | Descriptive statistics for all behavioral features |
-| `*.png` (6 figures) | All visualizations produced by `03_basic_eda.py` |
+| Cleaned dataset | `data/processed/cleaned_data_set.csv` |
+| Summary statistics by sentiment | `outputs/tables/summary_stats_by_sentiment.csv` |
+| Descriptive statistics | `outputs/tables/descriptive_stats.csv` |
+| Six figures | `outputs/figures/*.png` |
 
 ### Reproducibility Note
-
-All random operations (e.g., scatter plot sampling) use a fixed seed (`random_state=42`) to ensure consistent outputs across runs. The preprocessing pipeline preserves negation context through a custom NEG_ tagging system, which is documented in `02_preprocess_data.py`.
-
-
+The scatter-plot sampling step in `03_basic_eda.py` uses `random_state=42`, so the same plot is produced on every run. The negation tagging system (`NEG_` prefix) is implemented in `02_preprocess_data.py` and is the only place where token order interacts with sentiment information.
