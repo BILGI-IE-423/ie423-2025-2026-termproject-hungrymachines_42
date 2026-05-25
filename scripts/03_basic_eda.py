@@ -9,14 +9,14 @@ Reads:
     data/processed/cleaned_data_set.csv
 
 Writes:
-    outputs/tables/descriptive_stats.csv
-    outputs/tables/summary_stats_by_sentiment.csv
-    outputs/figures/sentiment_distribution.png
-    outputs/figures/word_count_distribution.png
-    outputs/figures/top_words_by_sentiment.png
-    outputs/figures/correlation_matrix.png
-    outputs/figures/lexical_diversity_vs_wordcount.png
-    outputs/figures/lexical_diversity_segments.png
+    visuals/tables/descriptive_stats.csv
+    visuals/tables/summary_stats_by_sentiment.csv
+    visuals/figures/sentiment_distribution.png
+    visuals/figures/word_count_distribution.png
+    visuals/figures/top_words_by_sentiment.png
+    visuals/figures/correlation_matrix.png
+    visuals/figures/lexical_diversity_vs_wordcount.png
+    visuals/figures/lexical_diversity_segments.png
 
 Run from the repository root:
 
@@ -39,8 +39,8 @@ from matplotlib.colors import to_rgba
 # --------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 PROCESSED_PATH = PROJECT_ROOT / "data" / "processed" / "cleaned_data_set.csv"
-FIGURES_DIR = PROJECT_ROOT / "outputs" / "figures"
-TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
+FIGURES_DIR = PROJECT_ROOT / "visuals" / "figures"
+TABLES_DIR = PROJECT_ROOT / "visuals" / "tables"
 
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 TABLES_DIR.mkdir(parents=True, exist_ok=True)
