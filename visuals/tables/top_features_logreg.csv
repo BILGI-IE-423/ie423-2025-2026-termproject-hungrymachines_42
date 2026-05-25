@@ -1,0 +1,21 @@
+rank,positive_word,positive_coef,negative_word,negative_coef
+1,great,7.6557,worst,-9.0843
+2,excellent,6.9071,bad,-7.4162
+3,best,4.7968,awful,-7.0133
+4,amazing,4.7323,boring,-6.3448
+5,wonderful,4.7197,waste,-6.3409
+6,favorite,4.6096,poor,-5.6988
+7,perfect,4.5424,terrible,-5.4619
+8,fun,4.3865,nothing,-5.4044
+9,one best,4.0995,supposed,-4.7292
+10,must see,4.0643,horrible,-4.6306
+11,loved,4.0067,instead,-4.3801
+12,brilliant,3.8776,disappointment,-4.1621
+13,today,3.6871,stupid,-4.1439
+14,superb,3.6572,neg_bad,-4.1234
+15,highly,3.6079,dull,-4.0813
+16,still,3.5623,worse,-4.0425
+17,hilarious,3.5152,fails,-4.0106
+18,love,3.4888,unfortunately,-3.8734
+19,worth,3.4048,poorly,-3.7937
+20,definitely,3.3688,annoying,-3.7746

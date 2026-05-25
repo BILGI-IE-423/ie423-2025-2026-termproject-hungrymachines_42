@@ -1,0 +1,7 @@
+model,vectorizer,best_params,cv_f1_mean,cv_f1_std
+Logistic Regression,TF-IDF,{'C': 1.0},0.8977,0.0028
+Naive Bayes,TF-IDF,{'alpha': 0.5},0.8795,0.0035
+Linear SVM,TF-IDF,{'C': 0.1},0.8992,0.0026
+Logistic Regression,BoW,{'C': 0.1},0.8939,0.0015
+Naive Bayes,BoW,{'alpha': 0.1},0.8701,0.0035
+Linear SVM,BoW,{'C': 0.01},0.8932,0.0021
