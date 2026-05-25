@@ -1,0 +1,5 @@
+group,n,word_count,lexical_diversity,exclamation_count,all_caps_count,rare_word_ratio,mixed_sentiment_score
+TP,4526,230.519,0.6427,0.9817,1.4554,0.0054,0.1261
+TN,4384,226.2192,0.6493,1.0456,1.8882,0.0047,0.236
+FP,556,227.5971,0.6458,0.6906,1.8543,0.0065,0.1833
+FN,451,228.7228,0.6409,1.0067,1.765,0.0061,0.2358
