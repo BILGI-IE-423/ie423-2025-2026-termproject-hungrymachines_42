@@ -29,10 +29,10 @@ and place it inside `data/raw/`. Full instructions are in [`data/README.md`](../
 ## Research Questions
 
 ### Research Question 1
-**Can traditional machine learning algorithms reliably categorize extreme sentiments to automate initial quality control in customer feedback loops?**
+**Can traditional machine learning algorithms reliably and interpretably classify customer sentiment to support initial quality control in feedback loops?**
 
 **Explanation:**
-In large-scale customer feedback systems, quickly identifying strongly positive or negative opinions is crucial for effective decision-making and prioritization. This study examines whether traditional machine learning models can serve as practical tools for automating early-stage quality control by focusing on extreme sentiment detection. The key objective is to evaluate whether simpler and more interpretable models are sufficient for identifying highly polarized feedback in real-world scenarios. The IMDB 50K dataset provides a suitable test environment, as it includes diverse reviews with varying emotional intensity, enabling a realistic assessment of model performance.
+In large-scale customer feedback systems, quickly distinguishing positive from negative opinions is crucial for effective decision-making and prioritization. This study examines whether traditional machine learning models — valued for their simplicity and transparency — can serve as practical tools for automating early-stage quality control through binary sentiment classification. Unlike complex deep learning approaches, models such as Logistic Regression, Naive Bayes, and Support Vector Machines offer interpretable decision processes, making them suitable candidates for real-world deployment where accountability and explainability are required. The IMDB 50K dataset provides a suitable test environment, as it includes diverse reviews with varying linguistic complexity, enabling a realistic assessment of whether interpretable models are sufficient for accurate and reliable sentiment classification.
 
 ### Research Question 2
 **Is there a statistically significant correlation between review length (word count) and sentiment polarity, indicating whether dissatisfied viewers write more exhaustive reviews?**
@@ -48,7 +48,7 @@ Systematic error analysis is essential in the machine learning lifecycle, as it 
 
 ## Project Proposal
 
-The primary objective of this project is to evaluate the effectiveness of traditional machine learning methods in sentiment analysis, with a focus on detecting extreme opinions and understanding factors that influence model performance.
+The primary objective of this project is to evaluate the effectiveness of traditional machine learning methods in sentiment analysis, with a focus on interpretable binary sentiment classification and understanding factors that influence model performance.
 
 The study begins with data preprocessing — text cleaning, normalization, and transformation into numerical representations such as Bag-of-Words and TF-IDF. This is followed by exploratory data analysis to examine sentiment distribution, review length patterns, and potential relationships between textual features and sentiment polarity.
 
