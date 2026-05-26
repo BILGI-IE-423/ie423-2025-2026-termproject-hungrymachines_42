@@ -164,7 +164,7 @@ footer a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
- 
+
 <nav>
   <a class="nav-logo" onclick="showPage('home')" href="#">
     <div class="nav-logo-mark">H</div>
@@ -179,10 +179,11 @@ footer a:hover{text-decoration:underline;}
     <li><a href="#" id="nav-rq3"     onclick="showPage('rq3');return false;">RQ 3</a></li>
     <li><a href="#" id="nav-discuss" onclick="showPage('discuss');return false;">Discussion</a></li>
     <li><a href="#" id="nav-repro"   onclick="showPage('repro');return false;">Reproduce</a></li>
-    <li><a class="nav-repo" href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">GitHub ↗️</a></li>
+    <li><a class="nav-repo" href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">GitHub ↗</a></li>
   </ul>
 </nav>
- 
+
+<!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
     <div class="hero-grid-bg"></div>
@@ -203,13 +204,14 @@ footer a:hover{text-decoration:underline;}
     <div class="hero-team">Bersu Yılmaz · Emirhan Karaca · Mert Ada Demirbaş</div>
   </section>
 </div>
- 
+
+<!-- PROJECT DETAILS -->
 <div class="page" id="page-details">
   <div class="container">
     <div class="section">
       <div class="section-eyebrow">Data</div>
       <h2 class="section-title">Dataset</h2>
-      <p class="section-intro">The <strong style="color:var(--white)">IMDB Dataset of 50K Movie Reviews</strong> provides a balanced benchmark for binary sentiment classification. Download from <a class="dataset-link" href="https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews" target="_blank">Kaggle ↗️</a> and place at <span class="code-pill">data/raw/IMDB Dataset.csv</span>. Detailed instructions live in <span class="code-pill">data/README.md</span>.</p>
+      <p class="section-intro">The <strong style="color:var(--white)">IMDB Dataset of 50K Movie Reviews</strong> provides a balanced benchmark for binary sentiment classification. Download from <a class="dataset-link" href="https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews" target="_blank">Kaggle ↗</a> and place at <span class="code-pill">data/raw/IMDB Dataset.csv</span>. Detailed instructions live in <span class="code-pill">data/README.md</span>.</p>
       <div class="dataset-grid">
         <div class="card">
           <div class="section-eyebrow" style="margin-bottom:1rem;">Dataset Statistics</div>
@@ -307,7 +309,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- EDA / VISUALIZATIONS -->
 <div class="page" id="page-viz">
   <div class="container">
     <div class="section">
@@ -354,7 +357,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- RQ 1 -->
 <div class="page" id="page-rq1">
   <div class="container">
     <div class="section">
@@ -364,7 +368,7 @@ footer a:hover{text-decoration:underline;}
         <h2>Reliable &amp; Interpretable Sentiment Classification</h2>
         <p class="rq-hero-question">Can traditional machine learning algorithms reliably and interpretably classify sentiment to support first-stage quality control in customer feedback loops?</p>
       </div>
- 
+
       <h3 class="sub-h">Methodology</h3>
       <p class="body-text">We split the cleaned dataset 80/20 with stratified sampling and a fixed random seed (<span class="code-pill">random_state=42</span>) for full reproducibility. Text is represented two ways for comparison: <strong>TF-IDF</strong> and <strong>Bag-of-Words</strong>, both with unigram + bigram features, <span class="code-pill">min_df=5</span>, and <span class="code-pill">max_features=20000</span>. Four models are evaluated:</p>
       <div class="model-grid" style="margin-bottom:1.5rem;">
@@ -374,7 +378,7 @@ footer a:hover{text-decoration:underline;}
         <div class="model-card"><div class="model-icon">🔲</div><h4>Linear SVM</h4><p>Finds the maximum-margin hyperplane. Robust in sparse, high-dimensional text spaces.</p><div class="tag-row"><span class="tag">LinearSVC</span><span class="tag">C ∈ {0.01, 0.1, 1, 10}</span></div></div>
       </div>
       <p class="body-text">Every ML model goes through <strong>5-fold stratified cross-validation grid search</strong> optimised on F1 score. Each (model × vectorizer) combination contributes a row to the comparison table — 6 ML configurations plus the baseline.</p>
- 
+
       <h3 class="sub-h">Results</h3>
       <div class="metric-grid">
         <div class="metric"><strong>89.85%</strong><span>Test Accuracy</span></div>
@@ -402,7 +406,7 @@ footer a:hover{text-decoration:underline;}
         <div class="viz-card"><img src="visuals/figures/confusion_matrices.png" alt="Confusion Matrices"/><div class="viz-caption"><strong>Confusion Matrices</strong><span>Errors are split almost symmetrically between FP and FN — no systematic class bias</span></div></div>
         <div class="viz-card"><img src="visuals/figures/top_features_logreg.png" alt="Top Features"/><div class="viz-caption"><strong>Top Predictive Words (Logistic Regression)</strong><span>Interpretability: 20 most positive and 20 most negative coefficients</span></div></div>
       </div>
- 
+
       <h3 class="sub-h">Interpretation</h3>
       <p class="body-text"><strong>Linear SVM with TF-IDF features wins</strong>, but only by hundredths of a point over Logistic Regression. With near-identical performance, <strong>Logistic Regression is arguably the better practical choice</strong> for a quality-control system because its coefficients are directly interpretable: every prediction can be explained in terms of which words pushed it positive or negative. The top-features figure shows exactly this — words like <em>excellent</em>, <em>wonderful</em>, <em>superb</em> push reviews toward positive; <em>worst</em>, <em>awful</em>, <em>boring</em> push them toward negative. <strong>The negation-tagging pre-processing step pays off here</strong>: tokens like <span class="code-pill">NEG_good</span> appear among the strongest negative predictors, meaning the model correctly learned that "not good" is negative.</p>
       <p class="body-text">All four ML configurations crush the most-frequent-class baseline by ~22–23 F1 points, with the best system ~40 percentage points ahead on accuracy. Reliability is therefore not in question. <strong>The answer to RQ1 is yes</strong> — and the path forward in production would be Logistic Regression with TF-IDF for its trustworthy decisions.</p>
@@ -413,7 +417,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- RQ 2 -->
 <div class="page" id="page-rq2">
   <div class="container">
     <div class="section">
@@ -423,10 +428,10 @@ footer a:hover{text-decoration:underline;}
         <h2>Does Review Length Predict Sentiment?</h2>
         <p class="rq-hero-question">Is there a statistically significant correlation between review length (word count) and sentiment polarity, indicating whether dissatisfied viewers write more exhaustive reviews?</p>
       </div>
- 
+
       <h3 class="sub-h">Methodology</h3>
       <p class="body-text">We run three correlation tests, each appropriate for a slightly different assumption about the data: <strong>Pearson</strong> (linear), <strong>Spearman</strong> (rank/monotonic), and <strong>point-biserial</strong> (textbook test for continuous vs. binary). We add a <strong>Mann–Whitney U</strong> test to ask whether the entire length distribution differs between the positive and negative groups. Finally we train a <strong>single-feature Logistic Regression</strong> using only <span class="code-pill">word_count</span> — if length is informative, even this minimal model should beat chance.</p>
- 
+
       <h3 class="sub-h">Results</h3>
       <div class="table-wrap" style="margin-bottom:1.5rem;">
         <table>
@@ -450,7 +455,7 @@ footer a:hover{text-decoration:underline;}
         <div class="viz-card"><img src="visuals/figures/sentiment_rate_by_length_bin.png" alt="Sentiment rate by length bin"/><div class="viz-caption"><strong>Sentiment Composition by Review Length</strong><span>All four bins (Short / Medium / Long / Very Long) sit close to 50/50</span></div></div>
         <div class="viz-card"><img src="visuals/figures/length_only_logreg_roc.png" alt="Length-only ROC curve"/><div class="viz-caption"><strong>Length-only Logistic Regression ROC</strong><span>The curve sits on the diagonal — word_count alone is no better than a coin flip</span></div></div>
       </div>
- 
+
       <h3 class="sub-h">Interpretation</h3>
       <div class="callout warn">
         <h4>A textbook case of statistical significance without practical significance</h4>
@@ -464,7 +469,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- RQ 3 -->
 <div class="page" id="page-rq3">
   <div class="container">
     <div class="section">
@@ -474,7 +480,7 @@ footer a:hover{text-decoration:underline;}
         <h2>Where Does the Best Model Fail?</h2>
         <p class="rq-hero-question">Are misclassified reviews concentrated in specific structural or behavioral patterns, such as review length, use of rare words, or emotionally mixed content?</p>
       </div>
- 
+
       <h3 class="sub-h">Methodology</h3>
       <p class="body-text">We reload the best model and vectorizer saved during RQ1 (Linear SVM + TF-IDF), reproduce the identical test split via the same random seed, and label every test review as <strong>TP / TN / FP / FN</strong>. For each review we then compute six features that group naturally:</p>
       <ul style="color:var(--text-mid);font-size:0.92rem;padding-left:1.5rem;margin-bottom:1rem;">
@@ -482,7 +488,7 @@ footer a:hover{text-decoration:underline;}
         <li><strong style="color:var(--text)">Behavioral — Rare word ratio:</strong> share of tokens in the bottom 5% of the <em>training</em> document-frequency distribution. A high value means the review uses words the model rarely saw during training.</li>
         <li><strong style="color:var(--text)">Behavioral — Mixed sentiment score:</strong> measures co-occurrence of top-20 positive and top-20 negative lexicon words (the very words RQ1's Logistic Regression identified as most predictive). Defined as <span class="code-pill">2·min(p,n) / (p+n+1)</span> — high when a review balances praise and criticism.</li>
       </ul>
- 
+
       <h3 class="sub-h">Results</h3>
       <div class="metric-grid">
         <div class="metric"><strong>9,917</strong><span>Test Reviews</span></div>
@@ -508,7 +514,7 @@ footer a:hover{text-decoration:underline;}
         <div class="viz-card"><img src="visuals/figures/rare_word_ratio_by_group.png" alt="Rare word ratio by group"/><div class="viz-caption"><strong>Rare Word Ratio by Error Group</strong><span>FP and FN groups show measurably higher rare-vocabulary usage than TP and TN</span></div></div>
         <div class="viz-card"><img src="visuals/figures/mixed_sentiment_by_group.png" alt="Mixed sentiment by group"/><div class="viz-caption"><strong>Mixed Sentiment Score by Error Group</strong><span>FN and TN both score high — negative reviews are inherently more lexically mixed</span></div></div>
       </div>
- 
+
       <h3 class="sub-h">Interpretation</h3>
       <p class="body-text"><strong>Two behavioral signals stand out</strong>, while every structural signal is essentially noise:</p>
       <div class="callout success">
@@ -528,7 +534,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- OVERALL DISCUSSION -->
 <div class="page" id="page-discuss">
   <div class="container">
     <div class="section">
@@ -550,7 +557,8 @@ footer a:hover{text-decoration:underline;}
     </div>
   </div>
 </div>
- 
+
+<!-- REPRODUCE -->
 <div class="page" id="page-repro">
   <div class="container">
     <div class="section">
@@ -561,13 +569,13 @@ footer a:hover{text-decoration:underline;}
 <span class="comment"># 1. Clone the repository</span>
 <span class="cmd">git clone</span> <span class="path">https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42</span>
 <span class="cmd">cd</span> ie423-2025-2026-termproject-hungrymachines_42
- 
+
 <span class="comment"># 2. Install dependencies</span>
 <span class="cmd">pip install</span> -r requirements.txt
- 
+
 <span class="comment"># 3. Download dataset from Kaggle → place at:</span>
 <span class="comment">#    data/raw/IMDB Dataset.csv</span>
- 
+
 <span class="comment"># 4. Run scripts in order (from the repository root)</span>
 <span class="cmd">python</span> scripts/01_load_data.py            <span class="comment"># validates the raw CSV</span>
 <span class="cmd">python</span> scripts/02_preprocess_data.py      <span class="comment"># writes data/processed/cleaned_data_set.csv</span>
@@ -589,7 +597,7 @@ footer a:hover{text-decoration:underline;}
         <p>Every script resolves its paths relative to <span class="code-pill">PROJECT_ROOT = Path(__file__).resolve().parent.parent</span>, so the pipeline works identically whether you invoke it from the repo root or from anywhere else. Random seeds are fixed (<span class="code-pill">random_state=42</span>) across the train/test split and every model — re-running on the same machine reproduces every number on this site.</p>
       </div>
       <h3 class="sub-h">Repository</h3>
-      <p class="body-text">All source code, data instructions, scripts, generated visuals and saved model artifacts live in the project repository: <a class="dataset-link" href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42 ↗️</a></p>
+      <p class="body-text">All source code, data instructions, scripts, generated visuals and saved model artifacts live in the project repository: <a class="dataset-link" href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42 ↗</a></p>
     </div>
     <div class="page-nav">
       <a class="btn-nav-back" href="#" onclick="showPage('discuss');return false;">← Discussion</a>
@@ -599,10 +607,10 @@ footer a:hover{text-decoration:underline;}
   <footer>
     <div class="footer-logo">HungryMachines_42</div>
     <p>IE 423 — Machine Learning Applications · Bilgi University · 2025–2026</p>
-    <p style="margin-top:0.3rem;">Bersu Yılmaz · Emirhan Karaca · Mert Ada Demirbaş · <a href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">GitHub ↗️</a></p>
+    <p style="margin-top:0.3rem;">Bersu Yılmaz · Emirhan Karaca · Mert Ada Demirbaş · <a href="https://github.com/BILGI-IE-423/ie423-2025-2026-termproject-hungrymachines_42" target="_blank">GitHub ↗</a></p>
   </footer>
 </div>
- 
+
 <script>
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
