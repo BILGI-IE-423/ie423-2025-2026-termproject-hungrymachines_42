@@ -285,10 +285,6 @@ print(group_summary.to_string())
 
 # Save the combined summary
 out_path = TABLES_DIR / "error_analysis_groups.csv"
-combined = pd.concat(
-    [correct_summary, group_summary.drop(columns=["n"])],
-    keys=["correct_vs_wrong", "tp_tn_fp_fn"],
-)
 group_summary.to_csv(out_path)
 print(f"\nSaved: {out_path}")
 
