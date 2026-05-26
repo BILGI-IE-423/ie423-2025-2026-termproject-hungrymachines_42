@@ -46,8 +46,7 @@ The pipeline covers text cleaning, negation tagging, lemmatization, statistical 
 ├── visuals/
 │   ├── figures/                       → all PNG figures produced by the scripts
 │   └── tables/                        → all CSV summary tables produced by the scripts
-└── docs/
-    └── ResearchProposalPreprocessing.md   → original proposal and preprocessing walkthrough
+
 ```
 
 ## Installation
@@ -87,7 +86,3 @@ The scripts are designed to run in this order. Each step writes its outputs to d
 **RQ2 — Length vs. sentiment.** All three correlation tests were statistically significant at α = 0.05 (Pearson r = +0.011, Spearman r = −0.009, point-biserial r = +0.011), but their effect sizes are practically negligible. A logistic regression using only `word_count` reached **49.4% test accuracy** — worse than chance. We conclude that review length carries essentially no usable signal about sentiment, and that the significant p-values are an artifact of the large sample size rather than a meaningful association.
 
 **RQ3 — Error patterns.** Misclassified reviews concentrate in two detectable behavioral patterns. Compared to correctly classified reviews, they use about **25% more rare words** (tokens in the bottom 5% of training document frequency) and score about **15% higher on a mixed-sentiment metric** that measures co-occurrence of top-positive and top-negative lexicon terms. Surface-level structural features (length, lexical diversity, ALL-CAPS count) do **not** discriminate between correct and incorrect predictions, reinforcing the RQ2 finding that surface structure is uninformative.
-
-## Proposal Document
-
-The original proposal — research questions, preprocessing walkthrough, and initial outputs — is in `docs/ResearchProposalPreprocessing.md`. Figures referenced in that document live under `visuals/figures/`.
