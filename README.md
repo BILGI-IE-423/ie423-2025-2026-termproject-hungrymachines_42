@@ -26,6 +26,7 @@ The pipeline covers text cleaning, negation tagging, lemmatization, statistical 
 
 ```
 ├── README.md                          → main project overview (this file)
+├── index.html                         → published website (GitHub Pages)
 ├── requirements.txt                   → Python dependencies
 ├── .gitignore                         → excludes raw/processed CSVs and OS/IDE files
 ├── data/
