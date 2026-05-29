@@ -304,18 +304,15 @@ print("\n" + "=" * 60)
 print("  STEP 3 — VISUALIZATIONS")
 print("=" * 60)
 print("\n[1/4] Model comparison bar chart ...")
- 
 plot_df = results_df.copy()
 plot_df["label"] = plot_df.apply(
     lambda r: f"{r['model']}\n({r['vectorizer']})" if r["vectorizer"] != "—"
     else r["model"], axis=1,
 )
 plot_df = plot_df.sort_values("test_f1", ascending=True).reset_index(drop=True)
- 
 fig, ax = plt.subplots(figsize=(11, 6.5))
 fig.patch.set_facecolor(BG_COLOR)
 ax.set_facecolor(BG_COLOR)
- 
 colors = []
 for _, r in plot_df.iterrows():
     if r["vectorizer"] == "—":
@@ -324,13 +321,11 @@ for _, r in plot_df.iterrows():
         colors.append(COLOR_POS)        # green for winner
     else:
         colors.append(COLOR_NEUTRAL)    # blue for the rest
- 
 bars = ax.barh(plot_df["label"], plot_df["test_f1"],
                color=colors, alpha=0.9, edgecolor="white", linewidth=0.6, zorder=3)
 for bar, val in zip(bars, plot_df["test_f1"]):
     ax.text(val + 0.005, bar.get_y() + bar.get_height() / 2,
             f"{val:.3f}", va="center", ha="left", fontsize=10, color="#333333")
- 
 ax.set_title("Model Comparison — Test F1 Score",
              fontsize=15, fontweight="bold", color="#2D2D2D", pad=18)
 ax.set_xlabel("F1 Score (test set)", fontsize=12, color="#444444", labelpad=10)
@@ -338,8 +333,9 @@ ax.set_xlim(0, 1.05)
 ax.spines[["top", "right"]].set_visible(False)
 ax.spines[["left", "bottom"]].set_color("#CCCCCC")
 ax.tick_params(colors="#555555", labelsize=10)
-ax.grid(False)
- 
+ax.grid(False, which="both", axis="both")
+ax.xaxis.grid(False)
+ax.yaxis.grid(False)
 plt.tight_layout()
 out_path = FIGURES_DIR / "model_comparison_bars.png"
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
@@ -438,31 +434,28 @@ print(f"   Saved: {out_path}")
 # 13. Visualization 4 — Top features (interpretability)
 # --------------------------------------------------------------------
 print("\n[4/4] Top features for Logistic Regression (interpretability) ...")
- 
+
 # Use Logistic Regression + its better vectorizer (chosen by test F1).
 lr_vec_name = model_best_vec["Logistic Regression"]
 lr_vec, lr_model = fitted_models[(lr_vec_name, "Logistic Regression")]
- 
 feature_names = np.array(lr_vec.get_feature_names_out())
 coefs = lr_model.coef_[0]
- 
 top_n = 20
 top_pos_idx = np.argsort(coefs)[-top_n:][::-1]
 top_neg_idx = np.argsort(coefs)[:top_n]
- 
 pos_words = feature_names[top_pos_idx]
 pos_coefs = coefs[top_pos_idx]
 neg_words = feature_names[top_neg_idx]
 neg_coefs = coefs[top_neg_idx]
- 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 7))
 fig.patch.set_facecolor(BG_COLOR)
 for ax in (ax1, ax2):
     ax.set_facecolor(BG_COLOR)
     ax.spines[["top", "right", "left", "bottom"]].set_visible(False)
     ax.tick_params(axis="both", labelsize=10, colors="#444444")
-    ax.grid(False)
- 
+    ax.grid(False, which="both", axis="both")
+    ax.xaxis.grid(False)
+    ax.yaxis.grid(False)
 # Positive side
 bars1 = ax1.barh(pos_words, pos_coefs, color=COLOR_POS, alpha=0.9,
                  edgecolor="white", linewidth=0.5, height=0.7)
@@ -474,7 +467,6 @@ ax1.set_xlabel("Logistic Regression Coefficient",
 for bar, val in zip(bars1, pos_coefs):
     ax1.text(val + max(pos_coefs) * 0.01, bar.get_y() + bar.get_height() / 2,
              f"{val:.2f}", va="center", ha="left", fontsize=8, color="#555555")
- 
 # Negative side (plot absolute value so bars grow left-to-right visually)
 neg_abs = np.abs(neg_coefs)
 bars2 = ax2.barh(neg_words, neg_abs, color=COLOR_NEG, alpha=0.9,
@@ -487,7 +479,6 @@ ax2.set_xlabel("|Logistic Regression Coefficient|",
 for bar, val, raw in zip(bars2, neg_abs, neg_coefs):
     ax2.text(val + max(neg_abs) * 0.01, bar.get_y() + bar.get_height() / 2,
              f"{raw:.2f}", va="center", ha="left", fontsize=8, color="#555555")
- 
 plt.suptitle(f"Most Predictive Words — Logistic Regression ({lr_vec_name})",
              fontsize=15, fontweight="bold", color="#2D2D2D", y=1.02)
 plt.tight_layout()
@@ -495,7 +486,6 @@ out_path = FIGURES_DIR / "top_features_logreg.png"
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
 plt.close(fig)
 print(f"   Saved: {out_path}")
- 
 # Also persist the top-features list as a CSV (useful for the website).
 top_features_df = pd.DataFrame({
     "rank": list(range(1, top_n + 1)),
