@@ -295,55 +295,158 @@ print(f"   Saved: {out_path}")
 # 8. Visualization 2 — Sentiment rate per length bin
 # --------------------------------------------------------------------
 print("\n[2/3] Sentiment rate per length bin ...")
- 
+
 fig, ax = plt.subplots(figsize=(11, 6))
 fig.patch.set_facecolor(BG_COLOR)
 ax.set_facecolor(BG_COLOR)
- 
+
 x = np.arange(len(bin_summary))
 width = 0.36
- 
-bars_pos = ax.bar(x - width/2, bin_summary["positive_rate"], width=width,
-                  color=COLOR_POS, alpha=0.9, edgecolor="white", linewidth=0.5,
-                  label="Positive rate")
-bars_neg = ax.bar(x + width/2, bin_summary["negative_rate"], width=width,
-                  color=COLOR_NEG, alpha=0.9, edgecolor="white", linewidth=0.5,
-                  label="Negative rate")
- 
+
+bars_pos = ax.bar(
+    x - width/2,
+    bin_summary["positive_rate"],
+    width=width,
+    color=COLOR_POS,
+    alpha=0.9,
+    edgecolor="white",
+    linewidth=0.5,
+    label="Positive rate"
+)
+
+bars_neg = ax.bar(
+    x + width/2,
+    bin_summary["negative_rate"],
+    width=width,
+    color=COLOR_NEG,
+    alpha=0.9,
+    edgecolor="white",
+    linewidth=0.5,
+    label="Negative rate"
+)
+
 for bars in (bars_pos, bars_neg):
     for bar in bars:
         h = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width()/2, h + 0.012,
-                f"{h:.1%}", ha="center", va="bottom",
-                fontsize=10, color="#333333")
- 
+        ax.text(
+            bar.get_x() + bar.get_width()/2,
+            h + 0.012,
+            f"{h:.1%}",
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            color="#333333"
+        )
+
 # Reference line at 50%
-ax.axhline(0.5, color="#888888", linestyle="--", linewidth=1, zorder=1)
-ax.text(len(bin_summary) - 0.4, 0.51, "50% balance",
-        ha="right", va="bottom", fontsize=9, color="#666666")
- 
-ax.set_title("Sentiment Composition by Review Length",
-             fontsize=15, fontweight="bold", color="#2D2D2D", pad=18)
+ax.axhline(
+    0.5,
+    color="#888888",
+    linestyle="--",
+    linewidth=1,
+    zorder=1
+)
+
+ax.text(
+    len(bin_summary) - 0.4,
+    0.51,
+    "50% balance",
+    ha="right",
+    va="bottom",
+    fontsize=9,
+    color="#666666"
+)
+
+ax.set_title(
+    "Sentiment Composition by Review Length",
+    fontsize=15,
+    fontweight="bold",
+    color="#2D2D2D",
+    pad=18
+)
+
+# --------------------------------------------------
+# FIX: x-axis labels + n labels are combined cleanly
+# --------------------------------------------------
+
+xtick_labels = [
+    f"{label}\n(n={int(total):,})"
+    for label, total in zip(bin_labels, bin_summary["total"])
+]
+
 ax.set_xticks(x)
-ax.set_xticklabels(bin_labels, fontsize=10, color="#333333", ha="center")
-ax.set_xlabel("Word Count Range", fontsize=12, color="#444444", labelpad=10)
-ax.set_ylabel("Proportion of Reviews", fontsize=12, color="#444444", labelpad=10)
-ax.set_ylim(0, max(0.75, bin_summary[["positive_rate", "negative_rate"]].values.max() + 0.1))
+ax.set_xticklabels(
+    xtick_labels,
+    fontsize=10,
+    color="#333333",
+    ha="center"
+)
+
+ax.set_xlabel(
+    "Word Count Range",
+    fontsize=12,
+    color="#444444",
+    labelpad=18
+)
+
+ax.set_ylabel(
+    "Proportion of Reviews",
+    fontsize=12,
+    color="#444444",
+    labelpad=10
+)
+
+ax.set_ylim(
+    0,
+    max(
+        0.75,
+        bin_summary[["positive_rate", "negative_rate"]].values.max() + 0.1
+    )
+)
+
 ax.spines[["top", "right"]].set_visible(False)
 ax.spines[["left", "bottom"]].set_color("#CCCCCC")
-ax.tick_params(colors="#555555", labelsize=10)
-ax.grid(axis="y", color="#E0E0E0", linewidth=0.7, linestyle="--")
-ax.legend(fontsize=11, framealpha=0.95, edgecolor="#CCCCCC", facecolor="white")
- 
-# Add n labels inside the plot above x-axis
-for i, row in bin_summary.iterrows():
-    ax.text(i, 0.02, f"n={int(row['total']):,}", transform=ax.get_xaxis_transform(),
-            ha="center", va="bottom", fontsize=8, color="#666666")
- 
+
+ax.tick_params(
+    colors="#555555",
+    labelsize=10,
+    axis="x",
+    pad=8
+)
+
+ax.tick_params(
+    colors="#555555",
+    labelsize=10,
+    axis="y"
+)
+
+ax.grid(
+    axis="y",
+    color="#E0E0E0",
+    linewidth=0.7,
+    linestyle="--"
+)
+
+ax.legend(
+    fontsize=11,
+    framealpha=0.95,
+    edgecolor="#CCCCCC",
+    facecolor="white"
+)
+
+# Eski n label bloğu kaldırıldı.
+# Çünkü bu kısım değerleri x-axis etiketleriyle üst üste bindiriyordu.
+# 
+# for i, row in bin_summary.iterrows():
+#     ax.text(i, 0.02, f"n={int(row['total']):,}", transform=ax.get_xaxis_transform(),
+#             ha="center", va="bottom", fontsize=8, color="#666666")
+
 plt.tight_layout()
+
 out_path = FIGURES_DIR / "sentiment_rate_by_length_bin.png"
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
 plt.close(fig)
+
 print(f"   Saved: {out_path}")
  
 # --------------------------------------------------------------------
