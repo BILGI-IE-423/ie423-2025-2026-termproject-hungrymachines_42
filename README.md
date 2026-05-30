@@ -1,5 +1,8 @@
 # IE 423 2025–2026 Term Project — Sentiment Analysis of IMDB Movie Reviews Using NLP and Machine Learning
 
+## Live Website
+https://bilgi-ie-423.github.io/ie423-2025-2026-termproject-hungrymachines_42/
+
 ## Team Members
 
 * Bersu Yılmaz — 123203069
